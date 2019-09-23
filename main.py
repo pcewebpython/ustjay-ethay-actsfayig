@@ -27,7 +27,7 @@ def home():
     phrase = get_fact().strip()
     punctuation = phrase[-1:]
     data = {'input_text': phrase[:-1],}
-    response = requests.post(url="https://hidden-journey-62459.herokuapp.com/piglatinize/", data=data)
+    response = requests.post(url="https://fierce-mountain-23253.herokuapp.com/", data=data)
     pig_response = get_pig_latin(response.url)
     return pig_response + punctuation
 
