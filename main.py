@@ -16,10 +16,14 @@ def get_fact():
 
     return facts[0].getText()
 
-
 @app.route('/')
 def home():
-    return "FILL ME!"
+    data = {'input_text': get_fact()}
+    response = requests.post(
+        "https://hidden-journey-62459.herokuapp.com/piglatinize/", data, allow_redirects=False)
+    page_headers = response.headers
+    pig_url = page_headers['Location']
+    return pig_url
 
 
 if __name__ == "__main__":
