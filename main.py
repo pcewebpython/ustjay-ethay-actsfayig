@@ -17,9 +17,19 @@ def get_fact():
     return facts[0].getText()
 
 
+def translate_fact(fact):
+    url = 'https://hidden-journey-62459.herokuapp.com/piglatinize/'
+    payload = {'input_text': fact}
+    translate = requests.post(url, data=payload, allow_redirects=False)
+    return translate.headers.get('location')
+
+
 @app.route('/')
 def home():
-    return "FILL ME!"
+    fact = get_fact()
+    body = translate_fact(fact)
+    link = '<a href="{}">{}</a>'.format(body, body)
+    return Response(response=link, mimetype='text/html')
 
 
 if __name__ == "__main__":
