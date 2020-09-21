@@ -14,18 +14,37 @@ app = Flask(__name__)
 #>>> r = requests.post("https://httpbin.org/post", data=payload)
 #>>> print(r.text)
 
-def get_fact():
+def latinize(in_fact):
 
-    payload = {'input_text': 'test'}
+    print(f"***MMM arg fact to latinize = -{in_fact}-")
 
+    #***MMM
+    #fact_to_latinize = in_fact
+    fact_to_latinize = 'test'
+
+    payload = {'input_text': fact_to_latinize}
     #resource_url = "https://hidden-journey-62459.herokuapp.com/"
-    #r = requests.post(resource_url, allow_redirects=False, data=payload)
+    #r = requests.post(resource_url, data=payload, allow_redirects=False)
     
     resource_url = "https://hidden-journey-62459.herokuapp.com/piglatinize/"
-    r = requests.post(resource_url, allow_redirects=True, data=payload)
+    r = requests.post(resource_url, data=payload, allow_redirects=False)
 
     print(f"***MMM response text = -{r.text}-")
 
+    for key, value in r.headers.items():
+        print(f"***MMM 111111111111 key = -{key}- value = -{value}-")
+    
+    try:
+        #latinized_result_url = r.headers['content-type']
+        latinized_result_url = r.headers['Location']
+        print(f"***MMM latinized_result_url = -{latinized_result_url}-")
+    except Exception as err:
+        print(f'***MMM 555555555555555555555Other error occurred: {err}')
+
+    print(f"***MMM 333333333333333333333")
+        
+    
+ 
     #soup = BeautifulSoup(response.content, "html.parser")
     #facts = soup.find_all("div", id="content")
 
@@ -34,28 +53,38 @@ def get_fact():
     return r.text
 
     
-def get_fact_00():
+def get_random_fact():
 
     response = requests.get("http://unkno.com")
 
     soup = BeautifulSoup(response.content, "html.parser")
     facts = soup.find_all("div", id="content")
 
-    print(f"***MMM facts = -{facts[0].getText()}-")
+    random_fact = facts[0].getText()
+
+    print(f"***MMM a random fact = -{random_fact}-")
+   
+    return random_fact
+
+def do_latinize_a_random_fact():
+
+    random_fact = get_random_fact()
+    latinized_fact = latinize(random_fact)
     
-    return facts[0].getText()
+    return latinized_fact
+    #return "hello mike"
 
 
 @app.route('/')
 def home():
 
     print("***MMM aaaaaaaaaaaa")
-    result_fact = get_fact()
+    body = do_latinize_a_random_fact()
     
     #print(f"***MMM called result fact = -{facts[0].getText()}-")
     
     #return "FILL ME!"
-    return result_fact
+    return body
 
 
 if __name__ == "__main__":
