@@ -1,0 +1,80 @@
+
+(ustjay-ethay-actsfayig) C:\A_uwPython\SP_Online_PY230\lesson5\assignment\ustjay-ethay-actsfayig\ustjay-ethay-actsfayig>heroku create
+Creating app... done, ? evening-retreat-32147
+https://evening-retreat-32147.herokuapp.com/ | https://git.heroku.com/evening-retreat-32147.git
+
+(ustjay-ethay-actsfayig) C:\A_uwPython\SP_Online_PY230\lesson5\assignment\ustjay-ethay-actsfayig\ustjay-ethay-actsfayig>git remote -v
+heroku  https://git.heroku.com/evening-retreat-32147.git (fetch)
+heroku  https://git.heroku.com/evening-retreat-32147.git (push)
+origin  https://github.com/mmanc125uw/ustjay-ethay-actsfayig.git (fetch)
+origin  https://github.com/mmanc125uw/ustjay-ethay-actsfayig.git (push)
+
+(ustjay-ethay-actsfayig) C:\A_uwPython\SP_Online_PY230\lesson5\assignment\ustjay-ethay-actsfayig\ustjay-ethay-actsfayig>git add .
+
+(ustjay-ethay-actsfayig) C:\A_uwPython\SP_Online_PY230\lesson5\assignment\ustjay-ethay-actsfayig\ustjay-ethay-actsfayig>git commit -a -m "Innitial commit.
+[master 988afc8] Innitial commit.
+ 1 file changed, 23 insertions(+), 42 deletions(-)
+
+(ustjay-ethay-actsfayig) C:\A_uwPython\SP_Online_PY230\lesson5\assignment\ustjay-ethay-actsfayig\ustjay-ethay-actsfayig>git push heroku master
+Counting objects: 20, done.
+Delta compression using up to 4 threads.
+Compressing objects: 100% (18/18), done.
+Writing objects: 100% (20/20), 3.16 KiB | 1.05 MiB/s, done.
+Total 20 (delta 8), reused 0 (delta 0)
+remote: Compressing source files... done.
+remote: Building source:
+remote:
+remote: -----> Python app detected
+remote: -----> Installing python-3.6.12
+remote: -----> Installing pip 20.1.1, setuptools 47.1.1 and wheel 0.34.2
+remote: -----> Installing SQLite3
+remote: -----> Installing requirements with pip
+remote:        Collecting beautifulsoup4==4.6.0
+remote:          Downloading beautifulsoup4-4.6.0-py3-none-any.whl (86 kB)
+remote:        Collecting certifi==2018.4.16
+remote:          Downloading certifi-2018.4.16-py2.py3-none-any.whl (150 kB)
+remote:        Collecting chardet==3.0.4
+remote:          Downloading chardet-3.0.4-py2.py3-none-any.whl (133 kB)
+remote:        Collecting click==6.7
+remote:          Downloading click-6.7-py2.py3-none-any.whl (71 kB)
+remote:        Collecting Flask==1.0.1
+remote:          Downloading Flask-1.0.1-py2.py3-none-any.whl (91 kB)
+remote:        Collecting idna==2.6
+remote:          Downloading idna-2.6-py2.py3-none-any.whl (56 kB)
+remote:        Collecting itsdangerous==0.24
+remote:          Downloading itsdangerous-0.24.tar.gz (46 kB)
+remote:        Collecting Jinja2==2.10
+remote:          Downloading Jinja2-2.10-py2.py3-none-any.whl (126 kB)
+remote:        Collecting MarkupSafe==1.1.1
+remote:          Downloading MarkupSafe-1.1.1-cp36-cp36m-manylinux1_x86_64.whl (27 kB)
+remote:        Collecting requests==2.18.4
+remote:          Downloading requests-2.18.4-py2.py3-none-any.whl (88 kB)
+remote:        Collecting urllib3==1.22
+remote:          Downloading urllib3-1.22-py2.py3-none-any.whl (132 kB)
+remote:        Collecting Werkzeug==0.14.1
+remote:          Downloading Werkzeug-0.14.1-py2.py3-none-any.whl (322 kB)
+remote:        Building wheels for collected packages: itsdangerous
+remote:          Building wheel for itsdangerous (setup.py): started
+remote:          Building wheel for itsdangerous (setup.py): finished with status 'done'
+remote:          Created wheel for itsdangerous: filename=itsdangerous-0.24-py3-none-any.whl size=10621 sha256=df326338f0a2e9d1212884a31c2c403f685940b3c2a
+50ec52d9f6c8333
+remote:          Stored in directory: /tmp/pip-ephem-wheel-cache-vu_kve52/wheels/87/c5/5a/ec57bae8cc6dc7933ea260ae3170fd858bec5673131c289a95
+remote:        Successfully built itsdangerous
+remote:        Installing collected packages: beautifulsoup4, certifi, chardet, click, Werkzeug, MarkupSafe, Jinja2, itsdangerous, Flask, idna, urllib3, r
+s
+remote:        Successfully installed Flask-1.0.1 Jinja2-2.10 MarkupSafe-1.1.1 Werkzeug-0.14.1 beautifulsoup4-4.6.0 certifi-2018.4.16 chardet-3.0.4 click-
+na-2.6 itsdangerous-0.24 requests-2.18.4 urllib3-1.22
+remote: -----> Discovering process types
+remote:        Procfile declares types -> web
+remote:
+remote: -----> Compressing...
+remote:        Done: 46.1M
+remote: -----> Launching...
+remote:        Released v3
+remote:        https://evening-retreat-32147.herokuapp.com/ deployed to Heroku
+remote:
+remote: Verifying deploy... done.
+To https://git.heroku.com/evening-retreat-32147.git
+ * [new branch]      master -> master
+
+(ustjay-ethay-actsfayig) C:\A_uwPython\SP_Online_PY230\lesson5\assignment\ustjay-ethay-actsfayig\ustjay-ethay-actsfayig>heroku open
