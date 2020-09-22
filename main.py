@@ -31,13 +31,14 @@ def latinize(in_fact):
 
     print(f"***MMM response text = -{r.text}-")
 
+    latinized_result_url = ""
     for key, value in r.headers.items():
         print(f"***MMM 111111111111 key = -{key}- value = -{value}-")
     
     try:
         #latinized_result_url = r.headers['content-type']
         latinized_result_url = r.headers['Location']
-        print(f"***MMM latinized_result_url = -{latinized_result_url}-")
+        print(f"***MMM 44444444444444444444444 latinized_result_url = -{latinized_result_url}-")
     except Exception as err:
         print(f'***MMM 555555555555555555555Other error occurred: {err}')
 
@@ -50,7 +51,14 @@ def latinize(in_fact):
 
     #print(f"***MMM facts = -{facts[0].getText()}-")
     
-    return r.text
+    
+    #return r.text
+    
+    result = r.text
+    if latinized_result_url != "":
+        result = latinized_result_url
+        
+    return result
 
     
 def get_random_fact():
