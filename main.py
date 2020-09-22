@@ -6,54 +6,37 @@ from bs4 import BeautifulSoup
 
 app = Flask(__name__)
 
-###
-###//hidden-journey-62459.herokuapp.com/piglatinize/
-### r = requests.post('https://httpbin.org/post', data = {'key':'value'})
-###
-#payload = {'key1': 'value1', 'key2': 'value2'}
-#>>> r = requests.post("https://httpbin.org/post", data=payload)
-#>>> print(r.text)
 
 def latinize(in_fact):
 
-    print(f"***MMM arg fact to latinize = -{in_fact}-")
+    ### latinize a supplied fact
 
-    #***MMM
-    #fact_to_latinize = in_fact
-    fact_to_latinize = 'test'
+    print(f"diag arg fact to latinize = -{in_fact}-")
 
+    fact_to_latinize = in_fact
+
+    # prepare the payload from form data, and initialize option allow_redirects off
     payload = {'input_text': fact_to_latinize}
-    #resource_url = "https://hidden-journey-62459.herokuapp.com/"
-    #r = requests.post(resource_url, data=payload, allow_redirects=False)
-    
     resource_url = "https://hidden-journey-62459.herokuapp.com/piglatinize/"
     r = requests.post(resource_url, data=payload, allow_redirects=False)
 
-    print(f"***MMM response text = -{r.text}-")
-
+    # r contains the response from the latinizer api
+    
     latinized_result_url = ""
     for key, value in r.headers.items():
-        print(f"***MMM 111111111111 key = -{key}- value = -{value}-")
-    
-    try:
-        #latinized_result_url = r.headers['content-type']
-        latinized_result_url = r.headers['Location']
-        print(f"***MMM 44444444444444444444444 latinized_result_url = -{latinized_result_url}-")
-    except Exception as err:
-        print(f'***MMM 555555555555555555555Other error occurred: {err}')
-
-    print(f"***MMM 333333333333333333333")
+        #print(f"diag  key = -{key}- value = -{value}-")
+        pass
         
-    
- 
-    #soup = BeautifulSoup(response.content, "html.parser")
-    #facts = soup.find_all("div", id="content")
+    try:
+        # extract the location link from the response header
+        latinized_result_url = r.headers['Location']
+        #print(f"diag latinized_result_url = -{latinized_result_url}-")
+    except Exception as err:
+        latinized_result_url = ""
+        #print(f'diag latinizer error occurred: {err}')
+        pass
 
-    #print(f"***MMM facts = -{facts[0].getText()}-")
-    
-    
-    #return r.text
-    
+    # prepare the result (url to latinized result)
     result = r.text
     if latinized_result_url != "":
         result = latinized_result_url
@@ -63,6 +46,8 @@ def latinize(in_fact):
     
 def get_random_fact():
 
+    ### get a random fact from unkno api
+    
     response = requests.get("http://unkno.com")
 
     soup = BeautifulSoup(response.content, "html.parser")
@@ -70,28 +55,24 @@ def get_random_fact():
 
     random_fact = facts[0].getText()
 
-    print(f"***MMM a random fact = -{random_fact}-")
+    #print(f"diag a random fact = -{random_fact}-")
    
     return random_fact
 
+    
 def do_latinize_a_random_fact():
 
+    ### latinize a random fact control
+    
     random_fact = get_random_fact()
     latinized_fact = latinize(random_fact)
     
     return latinized_fact
-    #return "hello mike"
 
-
+    
 @app.route('/')
 def home():
-
-    print("***MMM aaaaaaaaaaaa")
     body = do_latinize_a_random_fact()
-    
-    #print(f"***MMM called result fact = -{facts[0].getText()}-")
-    
-    #return "FILL ME!"
     return body
 
 
