@@ -1,0 +1,14 @@
+<html>
+<head>
+<title>Random Facts in Pig Latin</title>
+<link rel="stylesheet" href="{{ url_for('static', filename='css/styles.css') }}">
+
+</head>
+<body style='margin-left:10px'>
+	<h1>Pig Latin Translator</h1>
+	{% block content %} {% endblock content %}
+	<nav>
+    <a id="home" href="{{url_for('home')}}">-reload new fact-</a>
+    </nav>
+</body>
+</html>
