@@ -7,7 +7,8 @@ from bs4 import BeautifulSoup
 
 app = Flask(__name__)
 FACT_URL = 'http://unkno.com'
-PIG_LATINIZER_URL = 'http://hidden-journey-62459.herokuapp.com/piglatinize'
+PIG_LATINIZER_URL = 'https://hidden-journey-62459.herokuapp.com/piglatinize/'
+
 
 def get_fact():
     """ get the pig latin """
@@ -16,7 +17,6 @@ def get_fact():
     soup = BeautifulSoup(response.content, "html.parser")
     facts = soup.find_all("div", id="content")
     pig_latin_prhase = facts[0].getText().strip()
-
     return pig_latin_prhase
 
 
@@ -27,20 +27,20 @@ def home():
     my_fact = get_fact()
     fact_dict = {'input_text': my_fact}
     print(fact_dict)
+
     pig_latin_response = requests.post(PIG_LATINIZER_URL,
                                        allow_redirects=False,
                                        data=fact_dict)
     print(pig_latin_response.headers)
     pig_latin_location = pig_latin_response.headers['Location']
     print('test_' + pig_latin_location)
-    pig_latin_url = f'<a href="{pig_latin_location}">{pig_latin_location}</a>'
-    return render_template('pig_latin_translator.jinja2', pig_latin=pig_latin_url)
-
-
+    content = f"""
+        <div style='width:300px; text-align: center'>
+        <a href="{pig_latin_location}">{my_fact}</a></div>"""
+    return render_template('pig_latin_translator.jinja2', body=content)
 
 
 if __name__ == "__main__":
     port = int(os.environ.get("PORT", 6787))
-    app.run(host='0.0.0.0', port=port) # heroku
-    #app.run(host='localhost', port=port) # local
-
+    #app.run(host='0.0.0.0', port=port) # heroku
+    app.run(host='localhost', port=port) # local
