@@ -35,8 +35,8 @@ def home():
     pig_latin_location = pig_latin_response.headers['Location']
     print('test_' + pig_latin_location)
     content = f"""
-        <div style='width:300px; text-align: center'>
-        <a href="{pig_latin_location}">{my_fact}</a></div>"""
+        <div style='width:350px; text-align: center;margin-left:50px'>{my_fact}</div>
+        <p><b>Translate: </b><a href="{pig_latin_location}">{pig_latin_location}</a></p>"""
     return render_template('pig_latin_translator.jinja2', body=content)
 
 
